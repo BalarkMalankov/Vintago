@@ -1,0 +1,80 @@
+plugins {
+    id 'groovy'
+    id 'java'
+}
+
+plugins {
+    id 'org.springframework.boot' version '2.0.1.RELEASE'
+}
+
+group 'com.vintago'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+def lombok = "1.12.6"
+
+dependencies {
+    // Enable groovy and spring
+    implementation 'org.codehaus.groovy:groovy-all:2.4.7'
+
+    implementation  "org.springframework.boot:spring-boot-starter"
+    implementation  "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.springframework:spring-webflux:5.1.2.RELEASE"
+
+
+    implementation "com.google.collections:google-collections:1.0-rc2"
+
+    // Eases setters and getters (annotation processing should be enabled at IDE level)
+
+
+    //  implementation  "org.projectlombok:lombok:$lombok"
+    compile "org.projectlombok:lombok:$lombok"
+
+
+    // Enhance the application development experience by enabling features such as live reload
+    runtime "org.springframework.boot:spring-boot-devtools"
+
+    // Spring and spock testing libraries
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation "org.spockframework:spock-core:1.1-groovy-2.4"
+    testImplementation "org.spockframework:spock-spring:1.1-groovy-2.4"
+
+
+
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+    //compile "mysql:mysql-connector-java:8.0.11"
+    implementation "org.postgresql:postgresql:42.2.5"
+
+    //Swagger
+    compile "io.springfox:springfox-swagger2:2.9.2"
+    compile "io.springfox:springfox-swagger-ui:2.9.2"
+
+    compile 'com.google.guava:guava:22.0'
+
+    //compile group: 'org.postgresql', name: 'postgresql', version: '42.2.5'
+}
+group 'com.vintago'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.codehaus.groovy:groovy-all:2.3.11'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+}

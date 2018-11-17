@@ -1,0 +1,23 @@
+server:
+  port: 9090
+  contextPath: /home
+
+spring:
+  application:
+    name: vintago
+
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults:
+            false
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+  datasource:
+    url: jdbc:postgresql://localhost/vintagoreal
+    username: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver
