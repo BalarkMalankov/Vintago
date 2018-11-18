@@ -14,10 +14,12 @@ const menuItems = [
     },
     {
         id: 1,
-        title: 'Maintenance',
+        title: 'Mantenimiento',
         icon: 'icon_document_alt first_level_icon',
-        submenu_title: 'Maintenance',
+        submenu_title: 'Mantenimiento',
         submenu: [
+            {title: 'Categorias', link: '/categorias'},
+            {title: 'Sub Categorias', link: '/subcategorias'},
             {title: 'Tasks', link: '/tasks'},
             {title: 'Transfers', link: '/transfer'},
             {title: 'Submenu 3', link: '#'},

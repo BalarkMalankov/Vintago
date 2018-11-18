@@ -1,10 +1,13 @@
 package com.vintago.service;
 
+import com.vintago.entity.Categoria;
 import com.vintago.entity.SubCategoria;
+import com.vintago.repository.CategoriaRepository;
 import com.vintago.repository.SubCategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +16,9 @@ public class SubCategoriaServiceImpl implements ISubCategoriaService {
 
     @Autowired
     SubCategoriaRepository repository;
+
+    @Autowired
+    CategoriaRepository categoriaRepository;
 
     /**
      *
@@ -76,12 +82,21 @@ public class SubCategoriaServiceImpl implements ISubCategoriaService {
     /**
      *
      *
-     * @param adminn objeto de la clase SubCategoria elegida a ser guardada
+     * @param subCategoria objeto de la clase SubCategoria elegida a ser guardada
      * @return retorna el objeto de la clase SubCategoria
      */
     @Override
-    public SubCategoria save(SubCategoria adminn) {
-        return repository.save(adminn);
+    public SubCategoria save(SubCategoria subCategoria) {
+
+        Optional<Categoria> categoria = categoriaRepository.findById(subCategoria.getCategoria().getIdcategoria());
+
+        if(categoria.isPresent()){
+            subCategoria.setCategoria(categoria.get());
+            return repository.save(subCategoria);
+        }
+
+        return null;
+
     }
 
     /**
