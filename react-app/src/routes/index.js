@@ -6,12 +6,14 @@ import './main.css';
 import TasksPage from "./TasksPage";
 import TransferPage from "./TransferPage";
 import CategoriasPage from "./CategoriasPage";
+import SubCategoriasPage from "./SubCategoriasPage";
 
 const Routes = () => (
     <Router>
         <Switch>
             <Route exact path="/" component={HomePage}/>
             <Route path="/categorias" component={CategoriasPage}/>
+            <Route path="/subcategorias" component={SubCategoriasPage}/>
             <Route path="/login" component={LoginPage}/>
             <Route path="/tasks" component={TasksPage}/>
             <Route path="/transfer" component={TransferPage}/>
