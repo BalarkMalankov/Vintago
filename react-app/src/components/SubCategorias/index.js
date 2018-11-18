@@ -3,31 +3,35 @@ import SubcategoriaForm from "./SubcategoriaForm";
 import SubcategoriaList from "./SubcategoriaList";
 import {connect} from "react-redux";
 import {fetchSubcategoriaList} from "../../actions/subcategoriaAction";
-import {VIEW_SUBCATEGORIA_LIST} from "../../actions/actionTypes";
+import {fetchCategoriaList} from "../../actions/categoriaAction";
+import {VIEW_SUBCATEGORIA_LIST, VIEW_CATEGORIA_LIST} from "../../actions/actionTypes";
 
 class SubCategorias extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            subcategorias: []
+            subcategorias: [],
+            categorias: []
         }
     }
 
     componentDidMount() {
         this.props.fetchSubcategoriaList();
+        this.props.fetchCategoriaList();
     }
 
     componentWillReceiveProps(nextProps) {
+        console.log("nextProps: ", nextProps);
         if (nextProps.actionType === VIEW_SUBCATEGORIA_LIST) {
-            this.setState({"subcategorias" : nextProps.subcategoriaList});
+            this.setState({"subcategorias" : nextProps.subcategoriaList, "categorias" : nextProps.categoriaList});
         }
     }
 
     render() {
         return (
             <div>
-                <SubcategoriaForm />
+                <SubcategoriaForm categorias={this.state.categorias} />
                 <SubcategoriaList subcategorias={this.state.subcategorias} />
             </div>
         );
@@ -39,12 +43,13 @@ class SubCategorias extends React.Component {
 const mapState = state => {
     return {
         subcategoriaList: state.subcategoria.subcategoriaList,
+        categoriaList: state.categoria.categoriaList,
         actionType: state.subcategoria.actionType
     }
 };
 
 const mapDispatch = {
-    fetchSubcategoriaList
+    fetchSubcategoriaList, fetchCategoriaList
 };
 
 export default connect(mapState, mapDispatch)(SubCategorias);
