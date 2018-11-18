@@ -4,7 +4,7 @@ import SubcategoriaList from "./SubcategoriaList";
 import {connect} from "react-redux";
 import {fetchSubcategoriaList} from "../../actions/subcategoriaAction";
 import {fetchCategoriaList} from "../../actions/categoriaAction";
-import {VIEW_SUBCATEGORIA_LIST, VIEW_CATEGORIA_LIST} from "../../actions/actionTypes";
+import {VIEW_SUBCATEGORIA_LIST} from "../../actions/actionTypes";
 
 class SubCategorias extends React.Component {
 
@@ -22,7 +22,7 @@ class SubCategorias extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log("nextProps: ", nextProps);
+
         if (nextProps.actionType === VIEW_SUBCATEGORIA_LIST) {
             this.setState({"subcategorias" : nextProps.subcategoriaList, "categorias" : nextProps.categoriaList});
         }
@@ -31,7 +31,7 @@ class SubCategorias extends React.Component {
     render() {
         return (
             <div>
-                <SubcategoriaForm categorias={this.state.categorias} />
+                <SubcategoriaForm afterSubmit={this.props.fetchSubcategoriaList} categorias={this.state.categorias} />
                 <SubcategoriaList subcategorias={this.state.subcategorias} />
             </div>
         );

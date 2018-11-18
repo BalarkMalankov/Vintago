@@ -14,7 +14,7 @@ class SideMenu extends React.Component {
     }
 
     componentWillReceiveProps(nextProps){
-      console.log("next: ",nextProps);
+
     }
 
     render() {

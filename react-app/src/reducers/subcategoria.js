@@ -1,4 +1,4 @@
-import {VIEW_SUBCATEGORIA_LIST} from "../actions/actionTypes";
+import {VIEW_SUBCATEGORIA_LIST, SAVE_SUBCATEGORIA} from "../actions/actionTypes";
 
 export default function subcategoria(state = {}, action) {
     switch (action.type) {
@@ -7,6 +7,13 @@ export default function subcategoria(state = {}, action) {
                 actionType: action.type,
                 subcategoriaList: action.subcategoriaList,
             });
+
+        case SAVE_SUBCATEGORIA:
+            return Object.assign({}, state, {
+                actionType: action.type,
+                result: action.result,
+            });
+
 
         default:
             return state;

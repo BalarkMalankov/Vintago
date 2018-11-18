@@ -1,21 +1,33 @@
 import React from 'react';
 import {FormGroup, ControlLabel, FormControl, Form, Button, Col} from 'react-bootstrap';
+import {fetchSubcategoriaSave} from "../../actions/subcategoriaAction";
+import connect from "react-redux/es/connect/connect";
+import {SAVE_SUBCATEGORIA} from "../../actions/actionTypes";
+import PropTypes from "prop-types";
+
 
 class SubcategoriaForm extends React.Component {
 
+     initialState = {
+        categorias: [],
+        subcategoria: {
+            nombresubcategoria: "",
+            descripcionsubcategoria: "",
+            categoria: {
+                idcategoria: 1
+            }
+        }
+    };
+
+    static propTypes = {
+        categorias: PropTypes.array.isRequired,
+        afterSubmit: PropTypes.func
+    };
+
     constructor(props) {
         super(props);
-        this.state = {
-            categorias: [],
-            subcategoria: {
-                nombresubcategoria: "",
-                descripcionsubcategoria: "",
-                categoria: {
-                    idcategoria: 0
-                }
-            }
-
-        };
+        this.state = this.initialState;
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleTextChange(event) {
@@ -25,7 +37,6 @@ class SubcategoriaForm extends React.Component {
     }
 
     handleSelectChange(event) {
-        let fieldName = event.target.name;
         let fieldValue = event.target.value;
         this.setState({subcategoria:{...this.state.subcategoria, categoria: {idcategoria: fieldValue}}})
     }
@@ -34,6 +45,15 @@ class SubcategoriaForm extends React.Component {
         if (nextProps.categorias) {
             this.setState({categorias: nextProps.categorias})
         }
+
+        if(nextProps.actionType===SAVE_SUBCATEGORIA){
+            this.setState(this.initialState);
+            this.props.afterSubmit();
+        }
+    }
+
+    handleSubmit(){
+        this.props.fetchSubcategoriaSave(this.state.subcategoria);
     }
 
     render() {
@@ -48,7 +68,7 @@ class SubcategoriaForm extends React.Component {
                         <Col sm={8}>
                             <FormControl onChange={this.handleSelectChange.bind(this)} componentClass="select" placeholder="select">
                                 {this.state.categorias.map((categoria, index)=>(
-                                    <option value={categoria.idcategoria}>{categoria.nombrecategoria}</option>
+                                    <option key={index} value={categoria.idcategoria}>{categoria.nombrecategoria}</option>
                                 ))}
 
 
@@ -79,7 +99,7 @@ class SubcategoriaForm extends React.Component {
 
                     <FormGroup>
                         <Col smOffset={2} sm={8}>
-                            <Button type="submit">Guardar</Button>
+                            <Button onClick={this.handleSubmit}>Guardar</Button>
                         </Col>
                     </FormGroup>
                 </Form>
@@ -89,4 +109,15 @@ class SubcategoriaForm extends React.Component {
 
 }
 
-export default SubcategoriaForm;
+const mapState = state => {
+    return {
+        result: state.subcategoria.result || {},
+        actionType: state.subcategoria.actionType
+    }
+};
+
+const mapDispatch = {
+    fetchSubcategoriaSave
+};
+
+export default connect(mapState, mapDispatch)(SubcategoriaForm);
