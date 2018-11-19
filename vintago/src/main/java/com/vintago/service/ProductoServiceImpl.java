@@ -1,7 +1,9 @@
 package com.vintago.service;
 
 import com.vintago.entity.Producto;
+import com.vintago.entity.SubCategoria;
 import com.vintago.repository.ProductoRepository;
+import com.vintago.repository.SubCategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,9 @@ public class ProductoServiceImpl implements IProductoService{
 
     @Autowired
     ProductoRepository repository;
+
+    @Autowired
+    SubCategoriaRepository subCategoriaRepository;
 
     /**
      *
@@ -113,14 +118,22 @@ public class ProductoServiceImpl implements IProductoService{
 
     /**
      *
-     * @param adminn objeto de la clase Producto elegido a ser guardado
+     * @param producto objeto de la clase Producto elegido a ser guardado
      * @return retorna el objeto de la clase Producto
      */
 
     @Override
-    public Producto save(Producto adminn) {
+    public Producto save(Producto producto) {
 
-        return repository.save(adminn);
+       // return repository.save(producto);
+
+        Optional<SubCategoria> subCategoria=subCategoriaRepository.findById(producto.getSubCategoria().getIdsubcategoria());
+        if(subCategoria.isPresent()){
+            producto.setSubCategoria(subCategoria.get());
+            return repository.save(producto);
+        }
+        return null;
+
     }
 
     /**

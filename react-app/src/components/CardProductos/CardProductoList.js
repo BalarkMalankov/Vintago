@@ -2,7 +2,7 @@ import React from 'react';
 import {Table} from 'react-bootstrap';
 import PropTypes from "prop-types";
 
-class ProductoList extends React.Component {
+class CardProductoList extends React.Component {
 
     static propTypes = {
         subcategorias: PropTypes.array.isRequired
@@ -29,6 +29,7 @@ class ProductoList extends React.Component {
                     <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Sub-Categoria</th>
                         <th>Nombre</th>
                         <th>Descripción</th>
                         <th>Link de la imagen</th>
@@ -54,4 +55,4 @@ class ProductoList extends React.Component {
 
 }
 
-export default ProductoList;
+export default CardProductoList;

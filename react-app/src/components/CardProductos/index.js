@@ -1,11 +1,11 @@
 import React from 'react';
-import ProductoList from "./CardProductoList";
+import CardProductoList from "./CardProductoList";
 import {connect} from "react-redux";
 import {fetchProductoList} from "../../actions/productoActions";
 import {fetchSubcategoriaList} from "../../actions/subcategoriaAction";
 import {VIEW_PRODUCTO_LIST} from "../../actions/actionTypes";
 
-class Productos extends React.Component {
+class CardProductos extends React.Component {
 
     constructor(props) {
         super(props);
@@ -31,7 +31,7 @@ class Productos extends React.Component {
     render() {
         return (
             <div>
-                <ProductoList productos={this.state.productos} />
+                <CardProductoList productos={this.state.productos} />
             </div>
         );
     }
@@ -51,4 +51,4 @@ const mapDispatch = {
 };
 
 
-export default connect(mapState, mapDispatch)(Productos);
+export default connect(mapState, mapDispatch)(CardProductos);
