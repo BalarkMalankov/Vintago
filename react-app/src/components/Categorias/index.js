@@ -27,7 +27,7 @@ class Categorias extends React.Component {
     render() {
         return (
             <div>
-                <CategoriaForm />
+                <CategoriaForm afterSubmit={this.props.fetchCategoriaList} />
                 <CategoriaList categorias={this.state.categorias} />
             </div>
         )

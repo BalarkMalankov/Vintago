@@ -1,5 +1,5 @@
 import React from 'react';
-import {Table,Grid,Row,Col,Thumbnail,Button} from 'react-bootstrap';
+import {Grid,Row,Col,Thumbnail,Button} from 'react-bootstrap';
 import PropTypes from "prop-types";
 
 class CardProductoList extends React.Component {
@@ -56,8 +56,11 @@ class CardProductoList extends React.Component {
                             <Thumbnail src={producto.linkimagenproducto} alt="242x200">
                                 <h3>{producto.nombreproducto}</h3>
                                 <p>{producto.descripcionproducto}</p>
+                                <h4>s/.{producto.precioproducto}</h4>
+                                <p>Stock:{producto.stock}</p>
+
                                 <p>
-                                    <Button bsStyle="primary">Comprar</Button>
+                                    <Button href="/#" bsStyle="primary">Comprar</Button>
                                     &nbsp;
                                     <Button bsStyle="default">Añadir a Carrito</Button>
                                 </p>

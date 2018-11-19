@@ -23,7 +23,6 @@ const menuItems = [
             {title: 'Tasks', link: '/tasks'},
             {title: 'Transfers', link: '/transfer'},
             {title: 'Productos', link: '/productos'},
-            {title: 'Nuestros Productos', link: '/productosCatalogo'},
 
         ]
     },
@@ -35,7 +34,7 @@ const menuItems = [
         submenu_title: 'Pages',
         submenu: [
             {title: 'Login', link: '/login'},
-            {title: 'Submenu 2', link: '#'},
+            {title: 'Nuestros Productos', link: '/productosCatalogo'},
             {title: 'Submenu 3', link: '#'},
             {title: 'Submenu 4', link: '#'},
         ]
