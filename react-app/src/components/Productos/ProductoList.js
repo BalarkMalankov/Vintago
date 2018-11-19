@@ -2,35 +2,34 @@ import React from 'react';
 import {Table} from 'react-bootstrap';
 import PropTypes from "prop-types";
 
-class SubcategoriaList extends React.Component {
+class ProductoList extends React.Component {
 
-    // Le decimos al componente que va a necesitar un parametro/atributo llamado categorias que es obligatorio
     static propTypes = {
-        categorias: PropTypes.array.isRequired
+        subcategorias: PropTypes.array.isRequired
     };
 
     constructor(props) {
         super(props);
         this.state = {
-            subcategorias: []
+            productos: []
         };
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.subcategorias) {
-            this.setState({subcategorias: nextProps.subcategorias})
+        if (nextProps.productos) {
+            this.setState({productos: nextProps.productos})
         }
     }
 
     render() {
         return (
             <div>
-                <h4>Listado de categorias: </h4>
+                <h4>Listado de Productos: </h4>
                 <Table responsive hover>
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Categoria</th>
+                        <th>Sub-Categoria</th>
                         <th>Nombre</th>
                         <th>Descripción</th>
                         <th>Link de la imagen</th>
@@ -38,13 +37,13 @@ class SubcategoriaList extends React.Component {
                     </tr>
                     </thead>
                     <tbody>
-                    {this.state.subcategorias.map((subcategoria, index) => (
+                    {this.state.productos.map((producto, index) => (
                         <tr key={index}>
-                            <td>{subcategoria.idsubcategoria}</td>
-                            <td>{subcategoria.categoria.nombrecategoria}</td>
-                            <td>{subcategoria.nombresubcategoria}</td>
-                            <td>{subcategoria.descripcionsubcategoria}</td>
-                            <td>{subcategoria.linkimagensubcategoria}</td>
+                            <td>{producto.idsubcategoria}</td>
+                            <td>{producto.subCategoria.nombresubcategoria}</td>
+                            <td>{producto.nombreproducto}</td>
+                            <td>{producto.descripcionproducto}</td>
+                            <td>{producto.linkimagenproducto}</td>
                             <td></td>
                         </tr>
                     ))}
@@ -53,6 +52,7 @@ class SubcategoriaList extends React.Component {
             </div>
         )
     }
+
 }
 
-export default SubcategoriaList;
+export default ProductoList;

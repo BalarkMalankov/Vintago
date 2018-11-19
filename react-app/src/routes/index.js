@@ -7,6 +7,9 @@ import TasksPage from "./TasksPage";
 import TransferPage from "./TransferPage";
 import CategoriasPage from "./CategoriasPage";
 import SubCategoriasPage from "./SubCategoriasPage";
+import ProductosPage from "./ProductosPage";
+import CardProductosPage from "./CardProductosPage";
+
 
 const Routes = () => (
     <Router>
@@ -14,6 +17,8 @@ const Routes = () => (
             <Route exact path="/" component={HomePage}/>
             <Route path="/categorias" component={CategoriasPage}/>
             <Route path="/subcategorias" component={SubCategoriasPage}/>
+            <Route path="/productos" component={ProductosPage}/>
+            <Route path="/productosCatalogo" component={CardProductosPage}/>
             <Route path="/login" component={LoginPage}/>
             <Route path="/tasks" component={TasksPage}/>
             <Route path="/transfer" component={TransferPage}/>

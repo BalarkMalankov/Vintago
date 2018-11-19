@@ -22,7 +22,9 @@ const menuItems = [
             {title: 'Sub Categorias', link: '/subcategorias'},
             {title: 'Tasks', link: '/tasks'},
             {title: 'Transfers', link: '/transfer'},
-            {title: 'Submenu 3', link: '#'},
+            {title: 'Productos', link: '/productos'},
+            {title: 'Nuestros Productos', link: '/productosCatalogo'},
+
         ]
     },
     {

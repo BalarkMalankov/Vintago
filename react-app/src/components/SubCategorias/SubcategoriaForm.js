@@ -13,6 +13,7 @@ class SubcategoriaForm extends React.Component {
         subcategoria: {
             nombresubcategoria: "",
             descripcionsubcategoria: "",
+            linkimagensubcategoria: "",
             categoria: {
                 idcategoria: 1
             }
@@ -56,55 +57,65 @@ class SubcategoriaForm extends React.Component {
         this.props.fetchSubcategoriaSave(this.state.subcategoria);
     }
 
-    render() {
-        return (
-            <div>
-                <h4>Registro de categorias: </h4>
-                <Form horizontal>
-                    <FormGroup controlId="nombresubcategoria">
-                        <Col componentClass={ControlLabel} sm={2}>
-                            Categoria
-                        </Col>
-                        <Col sm={8}>
-                            <FormControl onChange={this.handleSelectChange.bind(this)} componentClass="select" placeholder="select">
-                                {this.state.categorias.map((categoria, index)=>(
-                                    <option key={index} value={categoria.idcategoria}>{categoria.nombrecategoria}</option>
-                                ))}
+        render() {
+            return (
+                <div>
+                    <h4>Registro de Sub-categorias: </h4>
+                    <Form horizontal>
+                        <FormGroup controlId="nombrecategoria">
+                            <Col componentClass={ControlLabel} sm={2}>
+                                Categoria
+                            </Col>
+                            <Col sm={8}>
+                                <FormControl onChange={this.handleSelectChange.bind(this)} componentClass="select" placeholder="select">
+                                    {this.state.categorias.map((categoria, index)=>(
+                                        <option key={index} value={categoria.idcategoria}>{categoria.nombrecategoria}</option>
+                                    ))}
 
 
-                            </FormControl>
-                        </Col>
-                    </FormGroup>
-                    <FormGroup controlId="nombresubcategoria">
-                        <Col componentClass={ControlLabel} sm={2}>
-                            Nombre
-                        </Col>
-                        <Col sm={8}>
-                            <FormControl name="nombresubcategoria"
-                                         type="text" value={this.state.subcategoria.nombresubcategoria}
-                                         onChange={this.handleTextChange.bind(this)}/>
-                        </Col>
-                    </FormGroup>
+                                </FormControl>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup controlId="nombresubcategoria">
+                            <Col componentClass={ControlLabel} sm={2}>
+                                Nombre
+                            </Col>
+                            <Col sm={8}>
+                                <FormControl name="nombresubcategoria"
+                                             type="text" value={this.state.subcategoria.nombresubcategoria}
+                                             onChange={this.handleTextChange.bind(this)}/>
+                            </Col>
+                        </FormGroup>
 
-                    <FormGroup controlId="descripcionsubcategoria">
-                        <Col componentClass={ControlLabel} sm={2}>
-                            Descripcion
-                        </Col>
-                        <Col sm={8}>
-                            <FormControl name="descripcionsubcategoria"
-                                         type="text"  value={this.state.subcategoria.descripcionsubcategoria}
-                                         onChange={this.handleTextChange.bind(this)}/>
-                        </Col>
-                    </FormGroup>
+                        <FormGroup controlId="descripcionsubcategoria">
+                            <Col componentClass={ControlLabel} sm={2}>
+                                Descripcion
+                            </Col>
+                            <Col sm={8}>
+                                <FormControl name="descripcionsubcategoria"
+                                             type="text"  value={this.state.subcategoria.descripcionsubcategoria}
+                                             onChange={this.handleTextChange.bind(this)}/>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup controlId="linkimagensubcategoria">
+                            <Col componentClass={ControlLabel} sm={2}>
+                                Link de imagen
+                            </Col>
+                            <Col sm={8}>
+                                <FormControl name="linkimagensubcategoria"
+                                             type="text"  value={this.state.subcategoria.linkimagensubcategoria}
+                                             onChange={this.handleTextChange.bind(this)}/>
+                            </Col>
+                        </FormGroup>
 
-                    <FormGroup>
-                        <Col smOffset={2} sm={8}>
-                            <Button onClick={this.handleSubmit}>Guardar</Button>
-                        </Col>
-                    </FormGroup>
-                </Form>
-            </div>
-        );
+                        <FormGroup>
+                            <Col smOffset={2} sm={8}>
+                                <Button onClick={this.handleSubmit}>Guardar</Button>
+                            </Col>
+                        </FormGroup>
+                    </Form>
+                </div>
+            );
     }
 
 }

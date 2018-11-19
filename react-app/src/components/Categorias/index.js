@@ -34,7 +34,6 @@ class Categorias extends React.Component {
     }
 }
 
-
 const mapState = state => {
     return {
         categoriaList: state.categoria.categoriaList,
