@@ -1,5 +1,5 @@
 import React from 'react';
-import {Table} from 'react-bootstrap';
+import {Table,Grid,Row,Col,Thumbnail,Button} from 'react-bootstrap';
 import PropTypes from "prop-types";
 
 class CardProductoList extends React.Component {
@@ -24,7 +24,7 @@ class CardProductoList extends React.Component {
     render() {
         return (
             <div>
-                <h4>Listado de Productos: </h4>
+                {/*  <h4>Listado de Productos: </h4>
                 <Table responsive hover>
                     <thead>
                     <tr>
@@ -48,7 +48,24 @@ class CardProductoList extends React.Component {
                         </tr>
                     ))}
                     </tbody>
-                </Table>
+                </Table>*/}
+                <Grid>
+                    <Row>
+                        {this.state.productos.map((producto, index) => (
+                        <Col xs={6} md={4}>
+                            <Thumbnail src={producto.linkimagenproducto} alt="242x200">
+                                <h3>{producto.nombreproducto}</h3>
+                                <p>{producto.descripcionproducto}</p>
+                                <p>
+                                    <Button bsStyle="primary">Comprar</Button>
+                                    &nbsp;
+                                    <Button bsStyle="default">Añadir a Carrito</Button>
+                                </p>
+                            </Thumbnail>
+                        </Col>
+                        ))}
+                    </Row>
+                </Grid>
             </div>
         )
     }
