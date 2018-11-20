@@ -34,7 +34,7 @@ class Ordenes extends React.Component{
 
     render() {
         return (
-            <div>
+            <div>2
                 <OrdenForm afterSubmit={this.props.fetchOrdenList} detalleordenes={this.state.detalleordenes} />
                 {/*                <OrdenList productos={this.state.ordenes} />*/}
             </div>

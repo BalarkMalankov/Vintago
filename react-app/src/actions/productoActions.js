@@ -1,4 +1,4 @@
-import {VIEW_PRODUCTO_LIST, SAVE_PRODUCTO} from './actionTypes';
+import {VIEW_PRODUCTO_LIST, SAVE_PRODUCTO, DELETE_PRODUCTO} from './actionTypes';
 
 export function fetchProductoList() {
     return function (dispatch, getState) {
@@ -40,6 +40,31 @@ export function fetchProductoSave(producto) {
 export function setProductoSave(result) {
     return {
         type: SAVE_PRODUCTO,
+        result
+    }
+}
+
+
+export function fetchProductoDelete(idproducto) {
+    return function (dispatch, getState) {
+        fetch(`http://localhost:9090/api/producto/delete/${idproducto}`,{
+            method:'delete',
+            headers:{
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(idproducto)
+        })
+            .then(response => response.json())
+            .then(jsonData => {
+                dispatch(setProductoDelete(jsonData))
+            })
+    };
+}
+
+export function setProductoDelete(result) {
+    return {
+        type: DELETE_PRODUCTO,
         result
     }
 }

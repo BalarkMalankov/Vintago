@@ -76,7 +76,7 @@ class OrdenForm extends React.Component{
                         <Col sm={8}>
                             <FormControl onChange={this.handleSelectChange.bind(this)} componentClass="select" placeholder="select">
                                 {this.state.detalleOrdenes.map((detalleOrdenes, index)=>(
-                                    <option key={index} value={detalleOrdenes.id}>{detalleOrdenes.productoIdproducto}</option>
+                                    <option key={index} value={detalleOrdenes.id}>{detalleOrdenes.productoIdproducto}>{detalleOrdenes.productoIdproducto}2</option>
                                 ))}
 
 
@@ -137,10 +137,7 @@ class OrdenForm extends React.Component{
             </div>
         );
     }
-
 }
-
-
 
 const mapState = state => {
     return {
