@@ -1,33 +1,32 @@
 import React from 'react';
 import {FormGroup, ControlLabel, FormControl, Form, Button, Col} from 'react-bootstrap';
-import {fetchProductoSave} from "../../actions/productoActions";
+import {fetchOrdenSave} from "../../actions/ordenAction";
 import connect from "react-redux/es/connect/connect";
-import {SAVE_PRODUCTO} from "../../actions/actionTypes";
+import {SAVE_ORDEN, SAVE_PRODUCTO} from "../../actions/actionTypes";
 import PropTypes from "prop-types";
 
-class ProductoForm extends React.Component {
+class OrdenForm extends React.Component{
 
-    initialState = {
-
-        subcategorias: [],
-        producto: {
-            codigoproducto: "",
-            nombreproducto: "",
-            precioproducto: "",
-            descripcionproducto: "",
-            stock: "",
-            linkimagenproducto: "",
-            subCategoria: {
-                idsubcategoria: 1
+    initialState={
+        detalleOrdenes:[],
+        orden:{
+            numeroorden:"",
+            fechaentrega:"",
+            fecharecibida:"",
+            detalleordenes:{
+                id: {
+                    productoIdproducto: 1,
+                    ordenIdorden: 1
+                }
             }
         }
-
     };
 
     static propTypes = {
-        subcategorias: PropTypes.array.isRequired,
+        detalleOrdenes: PropTypes.array.isRequired,
         afterSubmit: PropTypes.func
     };
+
 
     constructor(props) {
         super(props);
@@ -38,57 +37,71 @@ class ProductoForm extends React.Component {
     handleTextChange(event) {
         let fieldName = event.target.name;
         let fieldValue = event.target.value;
-        this.setState({producto: {...this.state.producto,[fieldName]: fieldValue}})
+        this.setState({orden: {...this.state.orden,[fieldName]: fieldValue}})
     }
+
 
     handleSelectChange(event) {
         let fieldValue = event.target.value;
-        this.setState({producto:{...this.state.producto, subCategoria: {idsubcategoria: fieldValue}}})
+        this.setState({orden:{...this.state.orden, detalleordenes: {id: fieldValue}}})
+        //this.setState({orden:{...this.state.orden,detalleordenes:{id:{productoidproducto: 3}}}})
     }
 
-
     componentWillReceiveProps(nextProps) {
-        if (nextProps.subcategorias) {
-            this.setState({subcategorias: nextProps.subcategorias})
+        if (nextProps.detalleOrdenes) {
+            this.setState({detalleOrdenes: nextProps.detalleOrdenes})
         }
 
-        if(nextProps.actionType===SAVE_PRODUCTO){
+        if(nextProps.actionType===SAVE_ORDEN){
             this.setState(this.initialState);
             this.props.afterSubmit();
         }
     }
 
-
     handleSubmit(){
-        this.props.fetchProductoSave(this.state.producto);
+        this.props.fetchOrdenSave(this.state.orden);
     }
+
 
     render() {
         return (
             <div>
-                <h4>Registro de productos: </h4>
+                <h4>Registrar Orden: </h4>
                 <Form horizontal>
-                    <FormGroup controlId="nombresubcategoria">
+                    <FormGroup controlId="productoIdproducto">
                         <Col componentClass={ControlLabel} sm={2}>
-                            Sub-Categoria
+
                         </Col>
                         <Col sm={8}>
                             <FormControl onChange={this.handleSelectChange.bind(this)} componentClass="select" placeholder="select">
-                                {this.state.subcategorias.map((subCategoria, index)=>(
-                                    <option key={index} value={subCategoria.idsubcategoria}>{subCategoria.nombresubcategoria}</option>
+                                {this.state.subcategorias.map((detalleordenes, index)=>(
+                                    <option key={index} value={detalleordenes.id}>{detalleordenes.productoIdproducto}</option>
                                 ))}
 
 
                             </FormControl>
                         </Col>
                     </FormGroup>
-                    <FormGroup controlId="nombreproducto">
+                    <FormGroup controlId="ordenIdorden">
+                        <Col componentClass={ControlLabel} sm={2}>
+
+                        </Col>
+                        <Col sm={8}>
+                            <FormControl onChange={this.handleSelectChange.bind(this)} componentClass="select" placeholder="select">
+                                {this.state.subcategorias.map((detalleordenes, index)=>(
+                                    <option key={index} value={detalleordenes.id}>{detalleordenes.ordenIdorden}</option>
+                                ))}
+
+                            </FormControl>
+                        </Col>
+                    </FormGroup>
+                    <FormGroup controlId="numeroorden">
                         <Col componentClass={ControlLabel} sm={2}>
                             Nombre
                         </Col>
                         <Col sm={8}>
-                            <FormControl name="nombreproducto"
-                                         type="text" value={this.state.producto.nombreproducto}
+                            <FormControl name="numeroorden"
+                                         type="text" value={this.state.orden.numeroorden}
                                          onChange={this.handleTextChange.bind(this)}/>
                         </Col>
                     </FormGroup>
@@ -133,7 +146,7 @@ class ProductoForm extends React.Component {
                                          onChange={this.handleTextChange.bind(this)}/>
                         </Col>
                     </FormGroup>
-                      <FormGroup controlId="linkimagenproducto">
+                    <FormGroup controlId="linkimagenproducto">
                         <Col componentClass={ControlLabel} sm={2}>
                             Link de imagen
                         </Col>
@@ -155,15 +168,17 @@ class ProductoForm extends React.Component {
 
 }
 
+
+
 const mapState = state => {
     return {
-        result: state.producto.result || {},
-        actionType: state.producto.actionType
+        result: state.orden.result || {},
+        actionType: state.orden.actionType
     }
 };
 
 const mapDispatch = {
-    fetchProductoSave
+    fetchOrdenSave
 };
 
-export default connect(mapState, mapDispatch)(ProductoForm);
+export default connect(mapState, mapDispatch)(OrdenForm);

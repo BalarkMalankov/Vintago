@@ -9,6 +9,7 @@ import CategoriasPage from "./CategoriasPage";
 import SubCategoriasPage from "./SubCategoriasPage";
 import ProductosPage from "./ProductosPage";
 import CardProductosPage from "./CardProductosPage";
+import OrdenesPage from "./OrdenesPage";
 
 
 const Routes = () => (
@@ -19,6 +20,7 @@ const Routes = () => (
             <Route path="/subcategorias" component={SubCategoriasPage}/>
             <Route path="/productos" component={ProductosPage}/>
             <Route path="/productosCatalogo" component={CardProductosPage}/>
+            <Route path="/ordenes" component={OrdenesPage}/>
             <Route path="/login" component={LoginPage}/>
             <Route path="/tasks" component={TasksPage}/>
             <Route path="/transfer" component={TransferPage}/>
