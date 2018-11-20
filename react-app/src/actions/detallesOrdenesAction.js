@@ -1,5 +1,4 @@
-import {VIEW_DETALLEORDEN_LIST, SAVE_ORDEN, SAVE_DETALLEORDEN} from "./actionTypes";
-import {setOrdenSave} from "./ordenAction";
+import {VIEW_DETALLEORDEN_LIST, SAVE_DETALLEORDEN} from "./actionTypes";
 
 export function fetchDetalleOrdenList(){
 

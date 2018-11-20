@@ -2,8 +2,9 @@ import React from 'react';
 import {FormGroup, ControlLabel, FormControl, Form, Button, Col} from 'react-bootstrap';
 import {fetchOrdenSave} from "../../actions/ordenAction";
 import connect from "react-redux/es/connect/connect";
-import {SAVE_ORDEN, SAVE_PRODUCTO} from "../../actions/actionTypes";
+import {SAVE_ORDEN} from "../../actions/actionTypes";
 import PropTypes from "prop-types";
+
 
 class OrdenForm extends React.Component{
 
@@ -74,8 +75,8 @@ class OrdenForm extends React.Component{
                         </Col>
                         <Col sm={8}>
                             <FormControl onChange={this.handleSelectChange.bind(this)} componentClass="select" placeholder="select">
-                                {this.state.subcategorias.map((detalleordenes, index)=>(
-                                    <option key={index} value={detalleordenes.id}>{detalleordenes.productoIdproducto}</option>
+                                {this.state.detalleOrdenes.map((detalleOrdenes, index)=>(
+                                    <option key={index} value={detalleOrdenes.id}>{detalleOrdenes.productoIdproducto}</option>
                                 ))}
 
 
@@ -88,7 +89,7 @@ class OrdenForm extends React.Component{
                         </Col>
                         <Col sm={8}>
                             <FormControl onChange={this.handleSelectChange.bind(this)} componentClass="select" placeholder="select">
-                                {this.state.subcategorias.map((detalleordenes, index)=>(
+                                {this.state.detalleOrdenes.map((detalleordenes, index)=>(
                                     <option key={index} value={detalleordenes.id}>{detalleordenes.ordenIdorden}</option>
                                 ))}
 
@@ -106,56 +107,27 @@ class OrdenForm extends React.Component{
                         </Col>
                     </FormGroup>
 
-                    <FormGroup controlId="codigoproducto">
+                    <FormGroup controlId="fechaentrega">
                         <Col componentClass={ControlLabel} sm={2}>
                             Codigo
                         </Col>
                         <Col sm={8}>
-                            <FormControl name="codigoproducto"
-                                         type="text" value={this.state.producto.codigoproducto}
+                            <FormControl name="fechaentrega"
+                                         type="text" value={this.state.orden.fechaentrega}
                                          onChange={this.handleTextChange.bind(this)}/>
                         </Col>
                     </FormGroup>
-                    <FormGroup controlId="precioproducto">
+                    <FormGroup controlId="fecharecibida">
                         <Col componentClass={ControlLabel} sm={2}>
                             Precio
                         </Col>
                         <Col sm={8}>
-                            <FormControl name="precioproducto"
-                                         type="text" value={this.state.producto.precioproducto}
+                            <FormControl name="fecharecibida"
+                                         type="text" value={this.state.orden.fecharecibida}
                                          onChange={this.handleTextChange.bind(this)}/>
                         </Col>
                     </FormGroup>
-                    <FormGroup controlId="descripcionproducto">
-                        <Col componentClass={ControlLabel} sm={2}>
-                            Descripcion
-                        </Col>
-                        <Col sm={8}>
-                            <FormControl name="descripcionproducto"
-                                         type="text" value={this.state.producto.descripcionproducto}
-                                         onChange={this.handleTextChange.bind(this)}/>
-                        </Col>
-                    </FormGroup>
-                    <FormGroup controlId="stock">
-                        <Col componentClass={ControlLabel} sm={2}>
-                            Stock
-                        </Col>
-                        <Col sm={8}>
-                            <FormControl name="stock"
-                                         type="text" value={this.state.producto.stock}
-                                         onChange={this.handleTextChange.bind(this)}/>
-                        </Col>
-                    </FormGroup>
-                    <FormGroup controlId="linkimagenproducto">
-                        <Col componentClass={ControlLabel} sm={2}>
-                            Link de imagen
-                        </Col>
-                        <Col sm={8}>
-                            <FormControl name="linkimagenproducto"
-                                         type="text" value={this.state.producto.linkimagenproducto}
-                                         onChange={this.handleTextChange.bind(this)}/>
-                        </Col>
-                    </FormGroup>
+
                     <FormGroup>
                         <Col smOffset={2} sm={8}>
                             <Button onClick={this.handleSubmit}>Guardar</Button>
