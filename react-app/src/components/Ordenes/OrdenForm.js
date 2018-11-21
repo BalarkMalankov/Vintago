@@ -76,7 +76,7 @@ class OrdenForm extends React.Component{
                         <Col sm={8}>
                             <FormControl onChange={this.handleSelectChange.bind(this)} componentClass="select" placeholder="select">
                                 {this.state.detalleOrdenes.map((detalleOrdenes, index)=>(
-                                    <option key={index} value={detalleOrdenes.id}>{detalleOrdenes.productoIdproducto}>{detalleOrdenes.productoIdproducto}2</option>
+                                    <option key={index} value={detalleOrdenes.id}>{detalleOrdenes.productoIdproducto}</option>
                                 ))}
 
 
@@ -96,6 +96,7 @@ class OrdenForm extends React.Component{
                             </FormControl>
                         </Col>
                     </FormGroup>
+
                     <FormGroup controlId="numeroorden">
                         <Col componentClass={ControlLabel} sm={2}>
                             Nombre

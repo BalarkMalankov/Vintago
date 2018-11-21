@@ -1,4 +1,4 @@
-import {SAVE_CATEGORIA, VIEW_CATEGORIA_LIST} from './actionTypes';
+import {SAVE_CATEGORIA, VIEW_CATEGORIA_LIST, DELETE_CATEGORIA, DELETE_PRODUCTO} from './actionTypes';
 
 
 export function fetchCategoriaList() {
@@ -43,3 +43,28 @@ function setCategoriaList(categoriaList) {
             result
         }
 }
+
+
+
+export function fetchCategoriaDelete(idcategoria) {
+    return function (dispatch, getState) {
+        fetch(`http://localhost:9090/api/categoria/delete/${idcategoria}`,{
+            method:'delete',
+            headers:{
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(idcategoria)
+        })
+            .then(response => response.json())
+            .then(jsonData => {
+                dispatch(setCategoriaDelete(jsonData))
+            })
+    };
+}
+
+export function setCategoriaDelete(result) {
+    return {
+        type: DELETE_CATEGORIA,
+        result
+    }}

@@ -1,6 +1,10 @@
 import React from 'react';
-import {Table} from 'react-bootstrap';
+import {Button, Table} from 'react-bootstrap';
+import connect from "react-redux/es/connect/connect";
 import PropTypes from "prop-types";
+import {DELETE_CATEGORIA} from "../../actions/actionTypes";
+import {fetchCategoriaDelete} from "../../actions/categoriaAction";
+import {fetchProductoDelete} from "../../actions/productoActions";
 
 class CategoriaList extends React.Component {
 
@@ -14,12 +18,24 @@ class CategoriaList extends React.Component {
         this.state = {
             categorias: []
         };
+        this.handleDeleteCategoria= this.handleDeleteCategoria.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.categorias) {
             this.setState({categorias: nextProps.categorias})
         }
+        if (nextProps.actionType===DELETE_CATEGORIA) {
+            this.setState(this.initialState)
+        }
+
+
+    }
+
+    handleDeleteCategoria(event){
+        this.props.fetchCategoriaDelete(event.target.value);
+        console.log(event.target.value);
+
     }
 
     render() {
@@ -41,7 +57,16 @@ class CategoriaList extends React.Component {
                             <td>{categoria.idcategoria}</td>
                             <td>{categoria.nombrecategoria}</td>
                             <td>{categoria.descripcioncategoria}</td>
-                            <td></td>
+                            <td>
+
+                                <Button
+                                    value={categoria.idcategoria}
+                                    onClick={this.handleDeleteCategoria}
+                                    className="btn btn-default">
+                                    Delete
+                                </Button>
+                            </td>
+
                         </tr>
                     ))}
                     </tbody>
@@ -51,4 +76,9 @@ class CategoriaList extends React.Component {
     }
 }
 
-export default CategoriaList;
+
+const mapDispatch = {
+    fetchCategoriaDelete
+};
+
+export default connect(null, mapDispatch)(CategoriaList);

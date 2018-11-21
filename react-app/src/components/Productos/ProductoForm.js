@@ -2,7 +2,7 @@ import React from 'react';
 import {FormGroup, ControlLabel, FormControl, Form, Button, Col} from 'react-bootstrap';
 import {fetchProductoSave} from "../../actions/productoActions";
 import connect from "react-redux/es/connect/connect";
-import {SAVE_PRODUCTO} from "../../actions/actionTypes";
+import {SAVE_ORDEN} from "../../actions/actionTypes";
 import PropTypes from "prop-types";
 
 
@@ -53,7 +53,7 @@ class ProductoForm extends React.Component {
             this.setState({subcategorias: nextProps.subcategorias})
         }
 
-        if(nextProps.actionType===SAVE_PRODUCTO){
+        if(nextProps.actionType===SAVE_ORDEN){
             this.setState(this.initialState);
             this.props.afterSubmit();
         }

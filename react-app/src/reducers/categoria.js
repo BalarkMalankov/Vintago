@@ -1,4 +1,4 @@
-import {SAVE_CATEGORIA, VIEW_CATEGORIA_LIST} from "../actions/actionTypes";
+import {DELETE_CATEGORIA, SAVE_CATEGORIA, VIEW_CATEGORIA_LIST} from "../actions/actionTypes";
 
 export default function categoria(state = {}, action) {
     switch (action.type) {
@@ -8,6 +8,12 @@ export default function categoria(state = {}, action) {
                 categoriaList: action.categoriaList,
             });
         case SAVE_CATEGORIA:
+            return Object.assign({}, state, {
+                actionType: action.type,
+                result: action.result,
+            });
+
+        case DELETE_CATEGORIA:
             return Object.assign({}, state, {
                 actionType: action.type,
                 result: action.result,
