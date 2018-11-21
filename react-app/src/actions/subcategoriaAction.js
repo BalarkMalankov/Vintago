@@ -1,4 +1,4 @@
-import {VIEW_SUBCATEGORIA_LIST, SAVE_SUBCATEGORIA} from './actionTypes';
+import {VIEW_SUBCATEGORIA_LIST, SAVE_SUBCATEGORIA, DELETE_SUBCATEGORIA, DELETE_PRODUCTO} from './actionTypes';
 
 export function fetchSubcategoriaList() {
     return function (dispatch, getState) {
@@ -40,6 +40,32 @@ export function fetchSubcategoriaSave(subcategoria) {
 export function setSubcategoriaSave(result) {
     return {
         type: SAVE_SUBCATEGORIA,
+        result
+    }
+}
+
+
+
+export function fetchSubCategoriaDelete(idsubcategoria) {
+    return function (dispatch, getState) {
+        fetch(`http://localhost:9090/api/subCategoria/delete/${idsubcategoria}`,{
+            method:'delete',
+            headers:{
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(idsubcategoria)
+        })
+            .then(response => response.json())
+            .then(jsonData => {
+                dispatch(setSubCategoriaDelete(jsonData))
+            })
+    };
+}
+
+export function setSubCategoriaDelete(result) {
+    return {
+        type: DELETE_PRODUCTO,
         result
     }
 }

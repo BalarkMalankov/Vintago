@@ -1,6 +1,10 @@
 import React from 'react';
-import {Table} from 'react-bootstrap';
+import {Button,Table} from 'react-bootstrap';
+import connect from "react-redux/es/connect/connect";
 import PropTypes from "prop-types";
+import {DELETE_SUBCATEGORIA} from "../../actions/actionTypes";
+import {fetchSubCategoriaDelete} from "../../actions/subcategoriaAction";
+
 
 class SubcategoriaList extends React.Component {
 
@@ -14,12 +18,24 @@ class SubcategoriaList extends React.Component {
         this.state = {
             subcategorias: []
         };
+
+        this.handleDeleteSubCategoria= this.handleDeleteSubCategoria.bind(this);
+
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.subcategorias) {
             this.setState({subcategorias: nextProps.subcategorias})
         }
+        if(nextProps.actionType===DELETE_SUBCATEGORIA){
+            this.setState(this.initialState)
+        }
+    }
+
+    handleDeleteSubCategoria(event){
+        this.props.fetchSubCategoriaDelete(event.target.value);
+        // console.log(this.state.sub.idproducto)
+        console.log(event.target.value);
     }
 
     render() {
@@ -45,7 +61,15 @@ class SubcategoriaList extends React.Component {
                             <td>{subcategoria.nombresubcategoria}</td>
                             <td>{subcategoria.descripcionsubcategoria}</td>
                             <td>{subcategoria.linkimagensubcategoria}</td>
-                            <td></td>
+                            <td>
+
+                                <Button
+                                    value={subcategoria.idsubcategoria}
+                                    onClick={this.handleDeleteSubCategoria}
+                                    className="btn btn-default">
+                                    Delete
+                                </Button>
+                            </td>
                         </tr>
                     ))}
                     </tbody>
@@ -55,4 +79,8 @@ class SubcategoriaList extends React.Component {
     }
 }
 
-export default SubcategoriaList;
+const mapDispatch = {
+    fetchSubCategoriaDelete
+};
+
+export default connect(null, mapDispatch)(SubcategoriaList);

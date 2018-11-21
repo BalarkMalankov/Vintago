@@ -4,7 +4,7 @@ import connect from "react-redux/es/connect/connect";
 import PropTypes from "prop-types";
 import {DELETE_CATEGORIA} from "../../actions/actionTypes";
 import {fetchCategoriaDelete} from "../../actions/categoriaAction";
-import {fetchProductoDelete} from "../../actions/productoActions";
+
 
 class CategoriaList extends React.Component {
 
